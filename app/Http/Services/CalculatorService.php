@@ -76,7 +76,7 @@ final class CalculatorService implements ICalculator
      */
     public function squareRoot(float $num1): float
     {
-		return $this->roundTheAnswer(sqrt($num1));
+  	    return $this->roundTheAnswer(sqrt($num1));
     }
 
 }
