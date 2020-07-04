@@ -28,7 +28,7 @@ class CalculatorUnaryRequest extends FormRequest
     public function rules()
     {
         return [
-            'num1' => 'required|numeric',
+            'num1' => 'required|numeric|gte:0',
         ];
     }
 
@@ -42,6 +42,7 @@ class CalculatorUnaryRequest extends FormRequest
         return [
             'num1.required' => 'Num1 is required',
             'num1.numeric' => 'Num1 must be a number only',
+            'num1.gte' => 'Num1 can\'t be less than 0',
         ];
     }
 

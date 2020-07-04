@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CalculatorRequest;
 use App\Http\Services\CalculatorService;
@@ -84,7 +85,13 @@ class CalculatorController extends Controller
     {
         ['num1' => $num1, 'num2' => $num2] = $request->input(); // unpacking array values
         // calling divide() of CalculatorService
-        $answer = $this->calculatorService->divide($num1, $num2);
+        try{
+            $answer = $this->calculatorService->divide($num1, $num2);
+        } catch(\Exception $e) {
+            throw new HttpResponseException(
+            response()->json(['error' => $e->getMessage()], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+          );
+        }
 
         return $this->getJsonResponse($answer);
     }
@@ -92,7 +99,7 @@ class CalculatorController extends Controller
     /**
      * Return Square Root of a given number
      *
-     * @param CalculatorRequest $request
+     * @param CalculatorUnaryRequest $request
      *
      * @return JsonResponse
      */
