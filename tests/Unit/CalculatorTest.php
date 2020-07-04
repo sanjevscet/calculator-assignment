@@ -7,12 +7,6 @@ use PHPUnit\Framework\TestCase;
 class CalculatorTest extends TestCase
 {
     /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-
-    /**
      * Unit test for addition
      *
      * @return void
