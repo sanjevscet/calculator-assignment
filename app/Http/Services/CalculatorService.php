@@ -58,7 +58,14 @@ final class CalculatorService implements ICalculator
      */
     public function divide(float $num1, float $num2): float
     {
-		return $this->roundTheAnswer($num1 / $num2);
+      $answer = 0;
+      try {
+          $answer = $num1/$num2;
+      } catch(\DivisionByZeroError $e) {
+          throw new \DivisionByZeroError($e->getMessage());
+      }
+
+	    return $this->roundTheAnswer($num1 / $num2);
     }
 
 
