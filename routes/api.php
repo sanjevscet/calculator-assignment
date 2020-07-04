@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/add', 'Api\CalculatorController@add');
+Route::post('/subtract', 'Api\CalculatorController@subtract');
+Route::post('/multiply', 'Api\CalculatorController@multiply');
+Route::post('/divide', 'Api\CalculatorController@divide');
+Route::post('/squareRoot', 'Api\CalculatorController@squareRoot');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
