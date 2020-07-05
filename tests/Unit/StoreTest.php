@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Http\Services\StoreService;
+use App\Services\StoreService;
 use Tests\TestCase;
 
 class StoreTest extends TestCase
@@ -15,7 +15,7 @@ class StoreTest extends TestCase
      *
      * @return void
      */
-    public function testCanStoreValue()
+    public function testCanStoreValue(): void
     {
         $service  = new StoreService();
         $value = 10;
@@ -24,13 +24,12 @@ class StoreTest extends TestCase
         $this->assertTrue(true);
     }
 
-
    /**
      * A basic unit test to retrieve value.
      *
      * @return void
      */
-    public function testCanRetrieveValue()
+    public function testCanRetrieveValue(): void
     {
         $service  = new StoreService();
         $response = $service->retrieve();
@@ -43,7 +42,7 @@ class StoreTest extends TestCase
      *
      * @return void
      */
-    public function testCanClearValue()
+    public function testCanClearValue(): void
     {
         $service  = new StoreService();
         $response = $service->clear();

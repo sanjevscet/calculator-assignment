@@ -21,7 +21,7 @@ Route::post('/divide', 'Api\CalculatorController@divide');
 Route::post('/squareRoot', 'Api\CalculatorController@squareRoot');
 
 Route::post('/save', 'Api\StoreController@save');
-Route::get('/retrieve', 'Api\StoreController@retrieve');
+Route::get('/savedValue', 'Api\StoreController@retrieve');
 Route::post('/clear', 'Api\StoreController@clear');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 
 /**
  * Our Calculator Service
@@ -9,6 +9,8 @@ final class CalculatorService implements ICalculator
 {
 
     /**
+     * Util function to round the response on below function
+     *
      * @param float $answer
      *
      * @return float
@@ -18,6 +20,8 @@ final class CalculatorService implements ICalculator
     }
 
     /**
+     *  Add num1 & num2
+     *
      * @param float $num1
      * @param float $num2
      *
@@ -29,6 +33,8 @@ final class CalculatorService implements ICalculator
     }
 
     /**
+     * Returns difference b/w num1 & num2
+     *
      * @param float $num1
      * @param float $num2
      *
@@ -40,6 +46,8 @@ final class CalculatorService implements ICalculator
     }
 
     /**
+     * Return product of num1 & num2
+     *
      * @param float $num1
      * @param float $num2
      *
@@ -51,6 +59,8 @@ final class CalculatorService implements ICalculator
     }
 
     /**
+     * Divide num1 by num2
+     *
      * @param float $num1
      * @param float $num2
      *
@@ -68,8 +78,9 @@ final class CalculatorService implements ICalculator
 	    return $this->roundTheAnswer($num1 / $num2);
     }
 
-
     /**
+     * Return squareRoot of num1
+     *
      * @param float $num1
      *
      * @return float

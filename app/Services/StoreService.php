@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 use App\Store;
 
 /**
@@ -19,7 +19,6 @@ final class StoreService implements IStore
     public function save(float $value): bool
     {
         $store = Store::first();
-        // $store = app(Store::)
         $id = $store ? $store->id : 1;
         $updateOrCreate = Store::updateOrCreate(
             ['id' => $id],
@@ -28,7 +27,6 @@ final class StoreService implements IStore
 
         return !!$updateOrCreate;
     }
-
 
     /**
      *  Retrieve the stored value

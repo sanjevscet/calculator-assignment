@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\TestResponse;
 
 use Tests\TestCase;
@@ -30,7 +29,7 @@ class StoreTest extends TestCase
      *
      * @return void
      */
-    public function testSaveUserValue()
+    public function testSaveUserValue(): void
     {
         $response  = $this->json('POST', 'api/save', ['value' => 30]);
         $response->assertJson(['save' => true]);
@@ -42,7 +41,7 @@ class StoreTest extends TestCase
      *
      * @return void
      */
-    public function testRetrieveUserValue()
+    public function testRetrieveUserValue(): void
     {
         $response  = $this->json('GET', 'api/retrieve');
         $response->assertJson(['value' => null]);
@@ -54,7 +53,7 @@ class StoreTest extends TestCase
      *
      * @return void
      */
-    public function testClearUserValue()
+    public function testClearUserValue(): void
     {
         $response  = $this->json('POST', 'api/clear');
         $response->assertJson(['value' => null]);
@@ -62,11 +61,11 @@ class StoreTest extends TestCase
     }
 
     /**
-     * Feature testing for Clearing User value
+     * Feature testing when no value is given
      *
      * @return void
      */
-    public function testNoUserValueGiven()
+    public function testNoUserValueGiven(): void
     {
         $response  = $this->json('POST', 'api/save');
         $response->assertSee('Value is required');
@@ -74,11 +73,11 @@ class StoreTest extends TestCase
     }
 
     /**
-     * Feature testing for Clearing User value
+     * Feature testing when given value is not numeric
      *
      * @return void
      */
-    public function testUserValueIsNotNumeric()
+    public function testUserValueIsNotNumeric(): void
     {
         $response  = $this->json('POST', 'api/save', ['value' => 'abc']);
         $response->assertSee('Value must be an integer');
@@ -86,11 +85,11 @@ class StoreTest extends TestCase
     }
 
     /**
-     * Feature testing for Clearing User value
+     * Feature testing when given value is not integer
      *
      * @return void
      */
-    public function testUserValueIsNotInteger()
+    public function testUserValueIsNotInteger(): void
     {
         $response  = $this->json('POST', 'api/save', ['value' => '12.34']);
         $response->assertSee('Value must be an integer');
@@ -98,11 +97,11 @@ class StoreTest extends TestCase
     }
 
     /**
-     * Feature testing for Clearing User value
+     * Feature testing when value is less than -2147483648
      *
      * @return void
      */
-    public function testUserValueIsVerySmall()
+    public function testUserValueIsVerySmall(): void
     {
         $response  = $this->json('POST', 'api/save', ['value' => '-2147483649']);
         $response->assertSee('value must be greater than or equal -2147483648');
@@ -110,15 +109,14 @@ class StoreTest extends TestCase
     }
 
     /**
-     * Feature testing for Clearing User value
+     * Feature testing when user value is greater than 2147483647
      *
      * @return void
      */
-    public function testUserValueIsVeryLarge()
+    public function testUserValueIsVeryLarge(): void
     {
         $response  = $this->json('POST', 'api/save', ['value' => '2147483648']);
         $response->assertSee('value must be less than or equal 2147483647');
         $this->assertEquals(422, $response->status());
     }
-
 }
