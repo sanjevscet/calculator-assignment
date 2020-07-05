@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRequest;
-use App\Http\Services\StoreService;
+use App\Services\StoreService;
 
 
 class StoreController extends Controller
@@ -39,6 +39,11 @@ class StoreController extends Controller
         }
     }
 
+    /**
+     * Return user Saved value
+     *
+     * @return JsonResponse
+     */
     public function retrieve(): JsonResponse
     {
         $response = $this->storeService->retrieve();

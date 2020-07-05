@@ -26,7 +26,7 @@ class CalculatorTest extends TestCase
      *
      * @return void
      */
-    public function testAdd()
+    public function testAdd(): void
     {
         $response  = $this->json('POST', 'api/add', ['num1' => 30, 'num2' => 20]);
         $response->assertJson(['answer' => 50]);
@@ -38,7 +38,7 @@ class CalculatorTest extends TestCase
      *
      * @return void
      */
-    public function testSubtract()
+    public function testSubtract(): void
     {
         $response  = $this->json('POST', 'api/subtract', ['num1' => 30, 'num2' => 20]);
         $response->assertJson(['answer' => 10]);
@@ -50,7 +50,7 @@ class CalculatorTest extends TestCase
      *
      * @return void
      */
-    public function testMultiply()
+    public function testMultiply(): void
     {
         $response  = $this->json('POST', 'api/multiply', ['num1' => 30, 'num2' => 20]);
         $response->assertJson(['answer' => 600]);
@@ -62,7 +62,7 @@ class CalculatorTest extends TestCase
      *
      * @return void
      */
-    public function testDivision()
+    public function testDivision(): void
     {
         $response  = $this->json('POST', 'api/divide', ['num1' => 30, 'num2' => 20]);
         $response->assertJson(['answer' => 1.5]);
@@ -74,7 +74,7 @@ class CalculatorTest extends TestCase
      *
      * @return void
      */
-    public function testSquareRoot()
+    public function testSquareRoot(): void
     {
         $response  = $this->json('POST', 'api/squareRoot', ['num1' => 36]);
         $response->assertJson(['answer' => 6]);
@@ -86,7 +86,7 @@ class CalculatorTest extends TestCase
      *
      * @return void
      */
-    public function testDivisionByZero()
+    public function testDivisionByZero(): void
     {
         $response  = $this->json('POST', 'api/divide', ['num1' => 30, 'num2' => 0]);
         $response->assertJson(['error' => 'Division by zero']);
@@ -98,7 +98,7 @@ class CalculatorTest extends TestCase
      *
      * @return void
      */
-    public function testNoInputSent()
+    public function testNoInputSent(): void
     {
         $response  = $this->json('POST', 'api/divide');
         $response->assertSee('Num1 is required');
@@ -111,7 +111,7 @@ class CalculatorTest extends TestCase
      *
      * @return void
      */
-    public function testNum1IsNotNumeric()
+    public function testNum1IsNotNumeric(): void
     {
         $response  = $this->json('POST', 'api/divide', ['num1' => '2A', 'num2' => '5']);
         $response->assertSee('Num1 must be number only');
@@ -123,7 +123,7 @@ class CalculatorTest extends TestCase
      *
      * @return void
      */
-    public function testNum2IsNotNumeric()
+    public function testNum2IsNotNumeric(): void
     {
         $response  = $this->json('POST', 'api/divide', ['num1' => '20', 'num2' => '5B']);
         $response->assertSee('Num2 must be number only');
@@ -135,7 +135,7 @@ class CalculatorTest extends TestCase
      *
      * @return void
      */
-    public function testNum1AndNum2AreNotNumeric()
+    public function testNum1AndNum2AreNotNumeric(): void
     {
         $response  = $this->json('POST', 'api/divide', ['num1' => '20A', 'num2' => '5B']);
         $response->assertSee('Num1 must be number only');

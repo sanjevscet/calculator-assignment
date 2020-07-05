@@ -7,7 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CalculatorRequest;
-use App\Http\Services\CalculatorService;
+use App\Services\CalculatorService;
 use App\Http\Requests\CalculatorUnaryRequest;
 
 class CalculatorController extends Controller
@@ -36,8 +36,7 @@ class CalculatorController extends Controller
     public function add(CalculatorRequest $request): JsonResponse
     {
         ['num1' => $num1, 'num2' => $num2] = $request->input(); // unpacking array values
-        // calling add() of CalculatorService
-        $answer = $this->calculatorService->add($num1, $num2);
+        $answer = $this->calculatorService->add($num1, $num2); // calling add() of CalculatorService
 
         return $this->getJsonResponse($answer);
     }
@@ -52,8 +51,7 @@ class CalculatorController extends Controller
     public function subtract(CalculatorRequest $request): JsonResponse
     {
         ['num1' => $num1, 'num2' => $num2] = $request->input(); // unpacking array values
-        // calling subtract() of CalculatorService
-        $answer = $this->calculatorService->subtract($num1, $num2);
+        $answer = $this->calculatorService->subtract($num1, $num2); // calling subtract() of CalculatorService
 
         return $this->getJsonResponse($answer);
     }
@@ -68,8 +66,7 @@ class CalculatorController extends Controller
     public function multiply(CalculatorRequest $request): JsonResponse
     {
         ['num1' => $num1, 'num2' => $num2] = $request->input(); // unpacking array values
-        // calling multiply() of CalculatorService
-        $answer = $this->calculatorService->multiply($num1, $num2);
+        $answer = $this->calculatorService->multiply($num1, $num2); // calling multiply() of CalculatorService
 
         return $this->getJsonResponse($answer);
     }
@@ -84,12 +81,11 @@ class CalculatorController extends Controller
     public function divide(CalculatorRequest $request): JsonResponse
     {
         ['num1' => $num1, 'num2' => $num2] = $request->input(); // unpacking array values
-        // calling divide() of CalculatorService
-        try{
-            $answer = $this->calculatorService->divide($num1, $num2);
-        } catch(\Exception $e) {
+        try {
+            $answer = $this->calculatorService->divide($num1, $num2); // calling divide() of CalculatorService
+        } catch (\Exception $e) {
             throw new HttpResponseException(
-            response()->json(['error' => $e->getMessage()], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+                response()->json(['error' => $e->getMessage()], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
           );
         }
 
@@ -106,8 +102,7 @@ class CalculatorController extends Controller
     public function squareRoot(CalculatorUnaryRequest $request): JsonResponse
     {
         $num1 = $request->input('num1'); // get num1 value
-        // calling squareRoot() of CalculatorService
-        $answer = $this->calculatorService->squareRoot($num1);
+        $answer = $this->calculatorService->squareRoot($num1); // calling squareRoot() of CalculatorService
 
         return $this->getJsonResponse($answer);
     }

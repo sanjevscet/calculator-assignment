@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 
 /**
  * Interface for Calculator, declaring the function to be implemented by Calculator Service
