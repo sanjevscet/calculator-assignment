@@ -20,6 +20,8 @@ Route::post('/multiply', 'Api\CalculatorController@multiply');
 Route::post('/divide', 'Api\CalculatorController@divide');
 Route::post('/squareRoot', 'Api\CalculatorController@squareRoot');
 
+Route::post('/store', 'Api\StoreController@store');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
