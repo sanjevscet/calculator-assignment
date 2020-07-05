@@ -2,89 +2,69 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Store;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRequest;
+use App\Http\Services\StoreService;
+
 
 class StoreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    private $storeService;
+
+    public function __construct()
     {
-        //
+        $this->storeService = app(StoreService::class);
     }
 
     /**
-     * Show the form for creating a new resource.
+     *  Store user value in DB
      *
-     * @return \Illuminate\Http\Response
+     * @param StoreRequest $request
+     *
+     * @return JsonResponse
      */
-    public function create()
+    public function store(StoreRequest $request): JsonResponse
     {
-        //
+        $value = $request->input('value');
+        try {
+            $response = $this->storeService->save($value);
+
+            return response()->json([
+                'save' => $response
+            ]);
+        } catch(\Exception $error) {
+            throw new \Exception($error->getMessage);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function retrieve(): JsonResponse
     {
-        //
-        $clientIP = $request->getClientIp(true);
-        dump($clientIP);
-        dump($_SERVER);
-        dd($request->ip());
+        $response = $this->storeService->retrieve();
+
+        return response()->json([
+            'value' => $response
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\store  $store
-     * @return \Illuminate\Http\Response
-     */
-    public function show(store $store)
-    {
-        //
-    }
 
     /**
-     * Show the form for editing the specified resource.
+     * Clear the stored value
      *
-     * @param  \App\store  $store
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function edit(store $store)
+    public function clear(): JsonResponse
     {
-        //
-    }
+        try {
+            $this->storeService->clear();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\store  $store
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, store $store)
-    {
-        //
-    }
+            return response()->json([
+                'value' => null
+            ]);
+        } catch(\Exception $error) {
+            throw new \Exception($error->getMessage);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\store  $store
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(store $store)
-    {
-        //
     }
 }
