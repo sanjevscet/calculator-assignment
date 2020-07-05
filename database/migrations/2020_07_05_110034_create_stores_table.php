@@ -15,8 +15,7 @@ class CreateStoresTable extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('value');
-            $table->ipAddress('ip_address');
+            $table->integer('value');
             $table->timestamps();
         });
     }
