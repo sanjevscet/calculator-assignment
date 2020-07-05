@@ -37,6 +37,9 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         //
+        $clientIP = $request->getClientIp(true);
+        dump($clientIP);
+        dump($_SERVER);
         dd($request->ip());
     }
 
