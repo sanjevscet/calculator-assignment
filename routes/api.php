@@ -20,7 +20,7 @@ Route::post('/multiply', 'Api\CalculatorController@multiply');
 Route::post('/divide', 'Api\CalculatorController@divide');
 Route::post('/squareRoot', 'Api\CalculatorController@squareRoot');
 
-Route::post('/store', 'Api\StoreController@store');
+Route::post('/save', 'Api\StoreController@save');
 Route::get('/retrieve', 'Api\StoreController@retrieve');
 Route::post('/clear', 'Api\StoreController@clear');
 

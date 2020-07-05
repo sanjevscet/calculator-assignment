@@ -15,7 +15,7 @@ class StoreRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'value' => 'bail|required|integer|gte:-2147483648|lte:2147483647',
@@ -37,7 +37,7 @@ class StoreRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'value.required' => 'Value is required',
@@ -53,12 +53,18 @@ class StoreRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    protected function failedValidation(Validator $validator)
+    protected function failedValidation(Validator $validator): void
     {
-        $errors = (new ValidationException($validator))->errors();
+        $validationErrors = (new ValidationException($validator))->errors();
+
+        $errors = [];
+        foreach ($validationErrors as $key => $error) {
+            $message = is_array($error) ? $error[0] : $error;
+            $errors[]= ['message' =>$message, 'property'=> $key];
+        }
 
         throw new HttpResponseException(
-            response()->json(['errors' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+            response()->json(['error' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
         );
     }
 }
