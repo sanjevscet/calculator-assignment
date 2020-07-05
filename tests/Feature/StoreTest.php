@@ -43,7 +43,7 @@ class StoreTest extends TestCase
      */
     public function testRetrieveUserValue(): void
     {
-        $response  = $this->json('GET', 'api/retrieve');
+        $response  = $this->json('GET', 'api/savedValue');
         $response->assertJson(['value' => null]);
         $this->assertResponse($response);
     }
