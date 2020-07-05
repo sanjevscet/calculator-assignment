@@ -15,7 +15,7 @@ class CalculatorRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -25,7 +25,7 @@ class CalculatorRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'num1' => 'required|numeric',
@@ -38,7 +38,7 @@ class CalculatorRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'num1.required' => 'Num1 is required',
@@ -56,12 +56,18 @@ class CalculatorRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    protected function failedValidation(Validator $validator)
+    protected function failedValidation(Validator $validator): void
     {
-        $errors = (new ValidationException($validator))->errors();
+        $validationErrors = (new ValidationException($validator))->errors();
+
+        $errors = [];
+        foreach ($validationErrors as $key => $error) {
+            $message = is_array($error) ? $error[0] : $error;
+            $errors[]= ['message' =>$message, 'property'=> $key];
+        }
 
         throw new HttpResponseException(
-            response()->json(['errors' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+            response()->json(['error' => $errors], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
         );
     }
 }

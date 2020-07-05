@@ -25,7 +25,7 @@ class StoreController extends Controller
      *
      * @return JsonResponse
      */
-    public function store(StoreRequest $request): JsonResponse
+    public function save(StoreRequest $request): JsonResponse
     {
         $value = $request->input('value');
         try {

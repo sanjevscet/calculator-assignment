@@ -34,7 +34,7 @@ class StoreTest extends TestCase
     {
         $service  = new StoreService();
         $response = $service->retrieve();
-        $this->assertEquals(null, $response);
+        $this->assertEquals(null, $response); // since, no actual value is stored in DB, so checking against null value
         $this->assertTrue(true);
     }
 
