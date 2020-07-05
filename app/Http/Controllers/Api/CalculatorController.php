@@ -105,7 +105,7 @@ class CalculatorController extends Controller
      */
     public function squareRoot(CalculatorUnaryRequest $request): JsonResponse
     {
-        $num1 = $request->input('num1');
+        $num1 = $request->input('num1'); // get num1 value
         // calling squareRoot() of CalculatorService
         $answer = $this->calculatorService->squareRoot($num1);
 
