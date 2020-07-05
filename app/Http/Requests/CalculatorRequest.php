@@ -43,8 +43,8 @@ class CalculatorRequest extends FormRequest
         return [
             'num1.required' => 'Num1 is required',
             'num2.required' => 'Num2 is required',
-            'num1.numeric' => 'Num1 must be a number only',
-            'num2.numeric' => 'Num2 must be a number only',
+            'num1.numeric' => 'Num1 must be number only',
+            'num2.numeric' => 'Num2 must be number only',
         ];
     }
 

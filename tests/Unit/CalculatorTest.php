@@ -2,19 +2,31 @@
 
 namespace Tests\Unit;
 
+use App\Http\Services\CalculatorService;
 use PHPUnit\Framework\TestCase;
 
 class CalculatorTest extends TestCase
 {
+
+    /**
+     * Util function to return the instance of Calculator Service
+     *
+     * @return CalculatorService
+     */
+    private function getCalculatorService(): CalculatorService
+    {
+        return new CalculatorService;
+    }
+
     /**
      * Unit test for addition
      *
      * @return void
      */
+
     public function testAddition(): void
     {
-        $calculatorService = new \App\Http\Services\CalculatorService;
-        $answer = $calculatorService->add(8, 6);
+        $answer = $this->getCalculatorService()->add(8, 6);
         $this->assertEquals(14, $answer);
         $this->assertTrue(true);
     }
@@ -26,8 +38,7 @@ class CalculatorTest extends TestCase
      */
     public function testSubtraction(): void
     {
-        $calculatorService = new \App\Http\Services\CalculatorService;
-        $answer = $calculatorService->subtract(8, 6);
+        $answer = $this->getCalculatorService()->subtract(8, 6);
         $this->assertEquals(2, $answer);
         $this->assertTrue(true);
     }
@@ -39,8 +50,7 @@ class CalculatorTest extends TestCase
      */
     public function testMultiplication(): void
     {
-        $calculatorService = new \App\Http\Services\CalculatorService;
-        $answer = $calculatorService->multiply(8, 6);
+        $answer = $this->getCalculatorService()->multiply(8, 6);
         $this->assertEquals(48, $answer);
         $this->assertTrue(true);
     }
@@ -52,8 +62,7 @@ class CalculatorTest extends TestCase
      */
     public function testDivision(): void
     {
-        $calculatorService = new \App\Http\Services\CalculatorService;
-        $answer = $calculatorService->divide(24, 6);
+        $answer = $this->getCalculatorService()->divide(24, 6);
         $this->assertEquals(4, $answer);
         $this->assertTrue(true);
     }
@@ -65,8 +74,7 @@ class CalculatorTest extends TestCase
      */
     public function testSqrt(): void
     {
-        $calculatorService = new \App\Http\Services\CalculatorService;
-        $answer = $calculatorService->squareRoot(9);
+        $answer = $this->getCalculatorService()->squareRoot(9);
         $this->assertEquals(3, $answer);
         $this->assertTrue(true);
     }
