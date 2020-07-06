@@ -4,9 +4,9 @@ Hi! I'm using **Laravel** 7.18 version as this is available by default. PHP vers
 
 **Heroku** is used here for hosting that assignment.
 
-**Public URL** https://majestic-kobuk-valley-80314.herokuapp.com/
+**Public URL:** https://majestic-kobuk-valley-80314.herokuapp.com/
 
-**CMD for executing Test** php artisan test
+**CMD for executing Test:** php artisan test
 
 
 # Test Cases
